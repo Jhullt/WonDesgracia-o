@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,7 +16,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',  # <<--- Tu app agregada aquí
+    'django.contrib.humanize',
+    'core',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -33,7 +37,7 @@ ROOT_URLCONF = 'proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'core' / 'templates'],  # <<--- Aquí lo corregimos
+        'DIRS': [BASE_DIR / 'core' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -47,12 +51,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyecto.wsgi.application'
 
+# 🔁 Configuración para PostgreSQL en Render
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bd_won_desgraciao',
+        'USER': 'bd_won_desgraciao_user',
+        'PASSWORD': 'M8Y55C6OhZcH31a8ePhlw9xSwGAD7tjd',
+        'HOST': 'dpg-d0cl0oje5dus73agb7u0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
+
+# ✅ Configuración de Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dx1clokey',
+    'API_KEY': '276775323318392',
+    'API_SECRET': 'NQOmYMOHt6oJPt4FPKvGSpLMHc8',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -69,16 +87,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Cambiado a Español de Chile
 LANGUAGE_CODE = 'es-cl'
-
-# Cambiado a Hora de Chile
 TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
-
 USE_TZ = True
 
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ✅ Solo por compatibilidad, si decides no usar Cloudinary más adelante
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ✅ ENV VAR requerida por algunas versiones del SDK
+os.environ["CLOUDINARY_URL"] = "cloudinary://276775323318392:NQOmYMOHt6oJPt4FPKvGSpLMHc8@dx1clokey"
+

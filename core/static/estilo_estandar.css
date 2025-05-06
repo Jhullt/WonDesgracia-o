@@ -1,25 +1,26 @@
+/* HEADER */
+
 /* HORARIO TIENDA */
 .horario {
-    background-color: #98ae89;
+    background-color: #0b0b09;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 40px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.1);
 }
 
 .horario h1 {
     font-size: 14px;
     font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    color: #314623;
+    font-family: 'Roboto', sans-serif;  
+    color: #ffffff;
     margin: 0;
 }
 
 /* BARRA NAV */
 #barra-nav{
-    background-color: #f8ddb0;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
     justify-content: space-between;
 }
 
@@ -31,7 +32,7 @@
 }
 
 #logo-nav {
-    width: 140px;
+    width: 120px;
 }
 
 /* Enlaces NAV */
@@ -42,10 +43,10 @@
 }
 
 .nav-2 a, .nav-2 .nav-link {
-    color: #000;
+    color: #000000;
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .nav-2 a:hover, .nav-2 .nav-link:hover {
@@ -74,11 +75,45 @@
     width: 240px;
 }
 .conter-nav-2 a:hover, .conter-nav-2 .nav-link:hover {
-    color: #e63030;
+    color: #eb0708;
 }
 .conter-nav-2 a, .conter-nav-2 .nav-link {
-    color: #000;
+    color: #000000;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: bold;  
+    font-size: 14px;
+}
+
+
+/* FOOTER */
+
+footer{
+    background-color: #0b0b09;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+footer h1{
+    margin-top: 20px;
+    font-family: "Protest Riot", sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.redes-sociales-contenedor{
+    column-gap: 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.redes-sociales-contenedor a{
+    color: #ffffff;
+    font-size: 30px;
+}
+
+#logo-footer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 170px;
 }

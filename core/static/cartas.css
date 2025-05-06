@@ -1,0 +1,160 @@
+/* CARTAS DE PRODUCTOS */
+.contenedor-cartas-principal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+.contenedor-cartas-principal-conter{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 30px;
+}
+.contenedor-cartas-populares{
+    display: flex;
+    column-gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    overflow: visible;
+    padding-bottom: 40px;
+}
+
+.carta{
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    border-radius: 10px;
+    width: 270px;
+    height: 500px;
+    -webkit-box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
+    -moz-box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
+    box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
+}
+.carta img{
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    height: 270px;
+}
+.datos-producto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.datos-producto h1{
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 15px;
+    height: 20px;
+}
+.datos-producto p{
+    width: 250px;
+    height: 90px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+.contenedor-carta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor-carta button{
+    border-radius: 20px;
+    background-color: #f0a41c;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    width: 80%;
+    max-width: 240px;
+    box-sizing: border-box;
+    height: 40px;
+    -webkit-box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+    -moz-box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+    box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+}
+
+.datos-producto h2{
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.productos-swiper {
+    overflow: visible;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+  
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    margin-right: 10px !important;
+}
+
+@media (min-width: 1024px) {
+.swiper-slide {
+    margin-right: 10px !important;
+    }
+}
+  
+.swiper, .swiper-wrapper {
+    overflow: visible !important;
+}
+
+/* Botones personalizados del carrusel */
+.swiper-button-next, .swiper-button-prev {
+    background-color: #1e1e1e;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Ocultar íconos por defecto de Swiper */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+/* Flechas personalizadas con contenido CSS */
+.swiper-button-prev::before {
+    content: "<";
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.swiper-button-next::before {
+    content: ">";
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}

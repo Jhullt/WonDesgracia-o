@@ -1,0 +1,39 @@
+{% load static %}
+<header>
+    <!-- Horario tienda -->
+    <div class="horario">
+        <h1>Horario atención - tienda</h1>
+    </div>
+
+    <!-- NAV -->
+    <div id="barra-nav" class="barra-nav d-flex align-items-center gap-4 p-3">
+        <div class="conter-nav-1">
+            <div class="nav-1">
+                <img id="logo-nav" src="{% static 'logo.png' %}" alt="Logo Won Desgracia'o">
+            </div>
+
+            <div class="nav-2 d-flex align-items-center gap-4">
+                <a href="{% url 'index' %}" class="nav-link">INICIO</a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        PRODUCTOS
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'churrascos' %}">CHURRASCOS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lomitos' %}">LOMITOS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'completos' %}">COMPLETOS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'papas_fritas' %}">PAPAS FRITAS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ass' %}">ASS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'bebestibles' %}">BEBESTIBLES</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="nav-link">PROMOS</a>
+                <a href="#" class="nav-link">NUESTRA UBICACIÓN</a>
+            </div>
+        </div>
+        <div class="conter-nav-2">
+            <a href="#" class="nav-link">SEGUIR PEDIDO</a>
+            <a href="#" class="nav-link">CARRITO</a>
+        </div>
+    </div>
+</header>

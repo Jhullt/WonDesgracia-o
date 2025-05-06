@@ -1,0 +1,38 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="es">
+{% include "plantillas/head.html" %}
+<body>
+
+    {% include "plantillas/header.html" %}
+
+    <main>
+        <div class="nombre_pagina">
+            <h1>BEBESTIBLES</h1>
+        </div>
+
+        <div class="contenedor-cartas-principal-conter">
+            <div class="contenedor-cartas-principal">
+                {% for producto in productos %}
+                {% if producto.categoria.nombre_categoria|lower == "bebestibles" %}
+                <div class="contenedor-carta">
+                    <div class="carta">
+                        <img src="{{ producto.imagen_producto.url }}" alt="{{ producto.nombre_producto }}">
+                        <div class="datos-producto">
+                          <h1>{{ producto.nombre_producto }}</h1>
+                          <p>{{ producto.descripcion_producto|truncatechars:110 }}</p>
+                          <h2>${{ producto.precio_producto|floatformat:0|intcomma }}</h2>
+                        </div>
+                    </div>
+                    <button>AGREGAR</button> 
+                </div>
+                {% endif %}
+                {% endfor %}   
+            </div>
+        </div>
+    </main>
+    {% include "plantillas/footer.html" %}
+    {% include "plantillas/js.html" %}
+</body>
+</html>
