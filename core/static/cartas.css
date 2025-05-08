@@ -297,11 +297,6 @@
     width: 40px;
 }
 
-/* Estilo personalizado para botón del modal */
-/* Botón AGREGAR dentro de modales */
-
-
-/* Hover efecto para botón dentro de modal */
 .modal .btn.btn-primary:hover {
     background-color: #ffd74a;
     color: black;

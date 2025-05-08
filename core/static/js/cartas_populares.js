@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const swiper = new Swiper('.productos-swiper', {
         slidesPerView: 5,
         spaceBetween: 10,
-        loop: false, // ❌ Evita clonar slides (problemas con modales)
+        loop: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
