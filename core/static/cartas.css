@@ -158,3 +158,153 @@
     font-weight: bold;
     color: white;
 }
+
+/* MODAL */
+
+.contenedor-modal-personalizado{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-modal-inicio{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 35px;
+}
+
+.contenedor-modal-inicio button{ 
+    margin: 5px;
+    align-items: center;
+    display: flex;
+    border-radius: 100%;
+    height: 25px;
+    background-color: #ffffff;
+    color: black;
+    border: none;
+}
+
+.contenedor-modal-divisor{
+    display: flex;
+}
+
+.contenedor-modal-izquierda{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.contenedor-modal-izquierda img{
+    width: 300px;
+    height: 300px;
+}
+
+.contenedor-modal-derecha {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+    padding: 20px;
+}
+
+.contenedor-modal-items-centrados{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 10px;
+}
+
+.contenedor-modal-items-centrados h1{
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenedor-modal-items-centrados p{
+    color: black;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contenedor-modal-items-centrados h2{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+.contenedor-modal-titulo-toppings{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contenedor-modal-titulo-toppings label{
+    color: black;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+#opcinal-topping{
+    font-weight: bold;
+}
+
+.fila-ingrediente {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.fila-ingrediente .izquierda {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-footer{
+    display: flex;
+    justify-content: space-around !important;
+}
+
+.modal-footer button{
+    width: 200px;
+    height: 40px;
+    color: #ffffff;
+    background-color: #f0a41c;
+    border: none;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.contenedor-modal-agregar-mas-productos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.contenedor-modal-agregar-mas-productos button{
+    background-color: #7b7b7b;
+    border-radius: 40px;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    width: 40px;
+}
+
+/* Estilo personalizado para botón del modal */
+/* Botón AGREGAR dentro de modales */
+
+
+/* Hover efecto para botón dentro de modal */
+.modal .btn.btn-primary:hover {
+    background-color: #ffd74a;
+    color: black;
+    transform: scale(1.03);
+    box-shadow: 10px 10px 16px -4px rgba(199, 199, 199, 1);
+}

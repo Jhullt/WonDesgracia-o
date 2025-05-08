@@ -1,13 +1,26 @@
 from django.shortcuts import render
-from .models import Producto
+from .models import Producto, Aderezo, IngredienteExtra
 
 def index(request):
     productos = Producto.objects.filter(popular=True)
-    return render(request, 'index.html', {'productos': productos})
+    aderezos = Aderezo.objects.all()
+    ingredientes_extras = IngredienteExtra.objects.all()
+    return render(request, 'index.html', {
+        'productos': productos,
+        'aderezos': aderezos,
+        'ingredientes_extras': ingredientes_extras,
+    })
+
 
 def vista_churrascos(request):
     productos = Producto.objects.all()
-    return render(request, 'barra_nav/churrascos.html', {'productos': productos})
+    aderezos = Aderezo.objects.all()
+    ingredientes_extras = IngredienteExtra.objects.all()
+    return render(request, 'barra_nav/churrascos.html', {
+        'productos': productos,
+        'aderezos': aderezos,
+        'ingredientes_extras': ingredientes_extras,
+    })
 
 def vista_lomitos(request):
     productos = Producto.objects.all()

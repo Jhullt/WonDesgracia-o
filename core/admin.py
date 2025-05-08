@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Aderezo
+from .models import Categoria, Producto, Aderezo, IngredienteExtra
 from django.utils.html import format_html
 
 @admin.register(Producto)
@@ -15,3 +15,7 @@ class ProductoAdmin(admin.ModelAdmin):
 
 admin.site.register(Categoria)
 admin.site.register(Aderezo)
+
+@admin.register(IngredienteExtra)
+class IngredienteExtraAdmin(admin.ModelAdmin):
+    list_display = ('nombre_ingrediente', 'precio_adicional')
