@@ -27,13 +27,13 @@
                         <li><a class="dropdown-item" href="{% url 'bebestibles' %}">BEBESTIBLES</a></li>
                     </ul>
                 </div>
-                <a href="#" class="nav-link">PROMOS</a>
-                <a href="#" class="nav-link">NUESTRA UBICACIÓN</a>
+                <a href="{% url 'promos' %}" class="nav-link">PROMOS</a>
+                <a href="{% url 'ubicacion' %}" class="nav-link">NUESTRA UBICACIÓN</a>
             </div>
         </div>
         <div class="conter-nav-2">
-            <a href="#" class="nav-link">SEGUIR PEDIDO</a>
-            <a href="#" class="nav-link">CARRITO</a>
+            <a href="{% url 'seguir_pedido' %}" class="nav-link">SEGUIR PEDIDO</a>
+            <a href="{% url 'carrito' %}" class="nav-link" id="contador-carrito">CARRITO (0)</a>
         </div>
     </div>
 </header>

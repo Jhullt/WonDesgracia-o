@@ -1,0 +1,43 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="es">
+{% include "plantillas/head.html" %}
+<body>
+
+    {% include "plantillas/header.html" %}
+
+    <main>
+        <div class="nombre_pagina">
+            <h1>CARRITO</h1>
+        </div>
+
+        <div class="carrito-global">
+            <div class="carrito-contenedor-separador-izquierda">
+                <div class="contenedor-productos-carrito" id="carrito-items">
+                    <!-- Aquí se insertarán dinámicamente los productos desde JS -->
+                </div>
+            </div>
+
+            <div class="carrito-contenedor-separador-derecha">
+                <h1 id="titulo-resumen-compra">Resumen de la compra</h1>
+                <div class="contenedor-datos-resumen-compra">
+                    <div class="carrito-resumen-compra">
+                        <h2 id="cantidad-productos">cantidad productos (0)</h2>
+                        <div class="mini-separador-resumen-compra">
+                            <h2>Total:</h2>
+                            <h2 id="total-compra">$0</h2>
+                        </div>
+                    </div>
+                    <button>Continuar compra</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    {% include "plantillas/footer.html" %}
+    {% include "plantillas/js.html" %}
+    <script src="{% static 'js/mostrar_carrito.js' %}"></script>
+</body>
+</html>

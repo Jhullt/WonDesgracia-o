@@ -1,0 +1,32 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="es">
+{% include "plantillas/head.html" %}
+<body>
+
+    {% include "plantillas/header.html" %}
+
+    <main>
+        <div class="nombre_pagina">
+            <h1>Nuestra ubicación!</h1>
+        </div>
+
+        <div style="width: 100%; display: flex; justify-content: center; padding: 20px;">
+            <iframe
+                width="90%"
+                height="400"
+                frameborder="0"
+                style="border:0; border-radius: 10px;"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=-33.7605659,-71.1872334&z=15&output=embed">
+            </iframe>
+        </div>
+
+    </main>
+
+    {% include "plantillas/footer.html" %}
+    {% include "plantillas/js.html" %}
+</body>
+</html>

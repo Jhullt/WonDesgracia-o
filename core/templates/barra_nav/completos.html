@@ -15,7 +15,7 @@
         <div class="contenedor-cartas-principal-conter">
             <div class="contenedor-cartas-principal">
                 {% for producto in productos %}
-                {% if producto.categoria.nombre_categoria|lower == "completos" %}
+                {% if producto.categoria.nombre_categoria|lower == "completos" and producto.stock > 0 %}
                 <div class="contenedor-carta">
                     <div class="carta">
                         <img src="{{ producto.imagen_producto.url }}" alt="{{ producto.nombre_producto }}">
@@ -25,7 +25,12 @@
                             <h2>${{ producto.precio_producto|floatformat:0|intcomma }}</h2>
                         </div>
                     </div>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalProducto{{ producto.id }}">
+                    <button
+                        class="btn btn-warning btn-abrir-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalProducto{{ producto.id }}"
+                        data-stock="{{ producto.stock }}"
+                    >
                         AGREGAR
                     </button>
                 </div>
@@ -37,14 +42,11 @@
 
                             <div class="contenedor-modal-personalizado">
                                 
-                                <!-- Botón cerrar -->
                                 <div class="contenedor-modal-inicio">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>
                                 </div>
                                 
-                                <!-- Contenido modal -->
                                 <div class="contenedor-modal-divisor">
-
                                     <div class="contenedor-modal-izquierda">
                                         <img src="{{ producto.imagen_producto.url }}" alt="{{ producto.nombre_producto }}">
                                     </div>
@@ -57,18 +59,15 @@
                                         </div>
 
                                         <div class="contenedor-topings">
-
                                             {% if producto.permite_aderezos %}
-                                            <!-- Aderezos -->
                                             <div class="contenedor-aderezos-modal mb-3">
                                                 <div class="contenedor-modal-titulo-toppings">
                                                     <label class="form-label">Selecciona tus aderezos</label>
                                                     <label class="form-label opcional">(Opcional)</label>
                                                 </div>
-                                                
                                                 <div class="form-check">
                                                     {% for aderezo in aderezos %}
-                                                    <input class="form-check-input" type="checkbox" id="aderezo{{ producto.id }}-{{ aderezo.id }}">
+                                                    <input class="form-check-input" type="checkbox" name="aderezos" value="{{ aderezo.nombre_aderezo }}" id="aderezo{{ producto.id }}-{{ aderezo.id }}">
                                                     <label class="form-check-label" for="aderezo{{ producto.id }}-{{ aderezo.id }}">
                                                         {{ aderezo.nombre_aderezo }}
                                                     </label><br>
@@ -77,20 +76,18 @@
                                             </div>
                                             {% endif %}
 
-                                            <!-- Ingredientes extra -->
                                             <div class="contenedor-ingredientes-extra mb-3">
                                                 <div class="contenedor-modal-titulo-toppings">
                                                     <label class="form-label">Agrega ingredientes extra</label>
-                                                    <label class="form-label opcional">(Opcional)</label>
+                                                    <label class="form-label opcional">(Máx. 3)</label>
                                                 </div>
-
                                                 <div class="form-check">
                                                     <div class="separador-ingrediente-extra">
                                                         {% for extra in ingredientes_extras %}
                                                         <div class="separador-ingrediente-extra-check">
                                                             <div class="fila-ingrediente">
                                                                 <div class="izquierda">
-                                                                    <input class="form-check-input" type="checkbox" name="ingredientes_extra" value="{{ extra.id }}" data-precio="{{ extra.precio_adicional }}" id="extra{{ producto.id }}-{{ extra.id }}">
+                                                                    <input class="form-check-input ingrediente-extra" type="checkbox" name="ingredientes_extra" value="{{ extra.id }}" data-precio="{{ extra.precio_adicional }}" id="extra{{ producto.id }}-{{ extra.id }}">
                                                                     <label class="form-check-label" for="extra{{ producto.id }}-{{ extra.id }}">{{ extra.nombre_ingrediente }}</label>
                                                                 </div>
                                                                 <div class="derecha">
@@ -102,13 +99,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
 
-                                <!-- Footer modal -->
                                 <div class="modal-footer px-0">
                                     <div class="contenedor-modal-agregar-mas-productos">
                                         <button class="btn-restar" data-id="{{ producto.id }}"><</button>
@@ -116,14 +110,14 @@
                                         <button class="btn-sumar" data-id="{{ producto.id }}">></button>
                                     </div>
                                     <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    id="btn-agregar-{{ producto.id }}"
-                                    data-precio-base="{{ producto.precio_producto }}"
-                                >
-                                    AGREGAR ${{ producto.precio_producto|floatformat:0|intcomma }}
-                                </button>
-                                
+                                        type="button"
+                                        class="btn btn-primary"
+                                        id="btn-agregar-{{ producto.id }}"
+                                        data-precio-base="{{ producto.precio_producto }}"
+                                        data-stock="{{ producto.stock }}"
+                                    >
+                                        AGREGAR ${{ producto.precio_producto|floatformat:0|intcomma }}
+                                    </button>
                                 </div>
 
                             </div>
@@ -139,6 +133,5 @@
 
     {% include "plantillas/footer.html" %}
     {% include "plantillas/js.html" %}
-    <script src="{% static 'js/precio_modal.js' %}"></script>
 </body>
 </html>

@@ -52,6 +52,7 @@
         <div class="swiper productos-swiper">
             <div class="swiper-wrapper">
               {% for producto in productos %}
+              {% if producto.stock > 0 %}
                 <div class="swiper-slide">
                   <div class="contenedor-carta">
                     <div class="carta">
@@ -67,6 +68,7 @@
                     </button>
                   </div>
                 </div>
+              {% endif %}
               {% endfor %}
             </div>
 
@@ -74,8 +76,8 @@
             <div class="swiper-button-next"></div>
         </div>
 
-        <!-- Modales fuera del Swiper -->
         {% for producto in productos %}
+        {% if producto.stock > 0 %}
         <div class="modal fade" id="modalProducto{{ producto.id }}" tabindex="-1" aria-labelledby="modalLabel{{ producto.id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -148,12 +150,11 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </main>
 
     {% include "plantillas/footer.html" %}
     {% include "plantillas/js.html" %}
-    <script src="{% static 'js/precio_modal.js' %}"></script>
-
 </body>
 </html>
