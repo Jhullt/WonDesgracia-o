@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Producto, Aderezo, IngredienteExtra
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Producto, Aderezo, IngredienteExtra, Promocion
 
 def index(request):
     productos = Producto.objects.filter(popular=True)
@@ -78,7 +78,16 @@ def vista_seguir_pedido(request):
     return render(request, 'barra_nav/seguir_pedido.html')
 
 def vista_promos(request):
-    return render(request, 'barra_nav/promos.html')
+    promociones = Promocion.objects.all()
+    productos = Producto.objects.all()
+    aderezos = Aderezo.objects.all()
+    ingredientes_extras = IngredienteExtra.objects.all()
+    return render(request, 'barra_nav/promos.html', {
+        'promociones': promociones,
+        'productos': productos,
+        'aderezos': aderezos,
+        'ingredientes_extras': ingredientes_extras,
+    })
 
 def vista_carrito(request):
     carrito = request.session.get('carrito', [])
@@ -120,3 +129,31 @@ def agregar_al_carrito(request, producto_id):
         request.session['carrito'] = carrito
         return redirect('carrito')
     return redirect('index')
+
+def agregar_promo_al_carrito(request, promo_id):
+    if request.method == 'POST':
+        promocion = get_object_or_404(Promocion, id=promo_id)
+        cantidad = int(request.POST.get('cantidad', 1))
+
+        descripcion = promocion.descripcion or "Promoción especial"
+        imagen = promocion.imagen_promocion.url if promocion.imagen_promocion else "/static/img/promo_default.png"
+
+        precio_total = promocion.precio_promocion * cantidad
+
+        item = {
+            'id': f"promo-{promocion.id}",
+            'nombre': promocion.nombre,
+            'descripcion': descripcion,
+            'precio': promocion.precio_promocion,
+            'cantidad': cantidad,
+            'imagen': imagen
+        }
+
+        carrito = request.session.get('carrito', [])
+        carrito.append(item)
+        request.session['carrito'] = carrito
+        return redirect('carrito')
+    return redirect('promos')
+
+def vista_checkout(request):
+    return render(request, 'pagar/checkout.html')

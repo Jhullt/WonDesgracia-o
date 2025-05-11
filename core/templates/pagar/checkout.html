@@ -1,0 +1,29 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="es">
+{% include "plantillas/head.html" %}
+<body>
+
+    <header>
+        <!-- Horario tienda -->
+        <div class="horario">
+            <h1 id="estado-tienda">Cargando estado de la tienda...</h1>
+        </div>
+
+        <div class="pagar-header">
+            <a href="{% url 'carrito' %}"><i class="fa-solid fa-arrow-left"></i> VOLVER</a>
+            <img id="logo-nav" src="{% static 'logo.png' %}" alt="Logo Won Desgracia'o">
+        </div>        
+
+
+    </header>
+
+    <main>
+
+    </main>
+
+    {% include "plantillas/footer.html" %}
+    {% include "plantillas/js.html" %}
+</body>
+</html>

@@ -33,7 +33,6 @@ class Producto(models.Model):
     stock = models.PositiveIntegerField()
     popular = models.BooleanField(default=False)
     permite_aderezos = models.BooleanField(default=True)
-    # Este campo sigue existiendo por si quieres registrar qué extras fueron seleccionados
     ingredientes_extras = models.ManyToManyField(IngredienteExtra, blank=True)
 
     def __str__(self):
@@ -44,8 +43,9 @@ class Promocion(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True)
     precio_promocion = models.DecimalField(max_digits=8, decimal_places=2)
+    imagen_promocion = CloudinaryField('imagen_promocion', blank=True, null=True)
     productos_opcionales = models.ManyToManyField(Producto, related_name='promos', blank=True)
-    cantidad_opciones = models.PositiveIntegerField(default=1)
+    cantidad_productos_a_elegir = models.PositiveIntegerField(default=1, verbose_name="Cantidad de productos a elegir")
 
     def __str__(self):
         return self.nombre

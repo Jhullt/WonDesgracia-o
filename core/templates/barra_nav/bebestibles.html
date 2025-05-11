@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="es">
 {% include "plantillas/head.html" %}
+<link rel="stylesheet" href="{% static 'bebestibles.css' %}">
 <body>
 
     {% include "plantillas/header.html" %}
@@ -58,6 +59,7 @@
                                             <h2>${{ producto.precio_producto|floatformat:0|intcomma }}</h2>
                                         </div>
 
+                                        {% if producto.categoria.nombre_categoria|lower != "bebestibles" %}
                                         <div class="contenedor-topings">
                                             {% if producto.permite_aderezos %}
                                             <div class="contenedor-aderezos-modal mb-3">
@@ -100,6 +102,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endif %}
                                     </div>
                                 </div>
 

@@ -76,6 +76,10 @@
             <div class="swiper-button-next"></div>
         </div>
 
+        <div class="contenedor-index-promos">
+            <a href="{% url 'promos' %}"><img id="img-contenedor-index-promos"  src="{% static 'banner_promos.png' %}"></a>
+        </div>
+
         {% for producto in productos %}
         {% if producto.stock > 0 %}
         <div class="modal fade" id="modalProducto{{ producto.id }}" tabindex="-1" aria-labelledby="modalLabel{{ producto.id }}" aria-hidden="true">

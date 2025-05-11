@@ -143,4 +143,11 @@ main {
     margin-bottom: 40px;
 }
 
+#img-contenedor-index-promos{
+    width: 800px;
+    border-radius: 10px;
+}
 
+.contenedor-index-promos{
+    margin-top: 40px;
+}

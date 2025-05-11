@@ -5,16 +5,114 @@
 {% include "plantillas/head.html" %}
 <body>
 
-    {% include "plantillas/header.html" %}
+{% include "plantillas/header.html" %}
 
-    <main>
-        <div class="nombre_pagina">
-            <h1>PROMOS</h1>
+<main>
+    <div class="nombre_pagina">
+        <h1>PROMOCIONES</h1>
+    </div>
+
+    <div class="contenedor-cartas-principal-conter">
+        <div class="contenedor-cartas-principal">
+            {% for promo in promociones %}
+            <div class="contenedor-carta">
+                <div class="carta">
+                    <img src="{% if promo.imagen_promocion %}{{ promo.imagen_promocion.url }}{% else %}{% static 'promos/promocion.png' %}{% endif %}" alt="{{ promo.nombre }}">
+                    <div class="datos-producto">
+                        <h1>{{ promo.nombre }}</h1>
+                        <p>{{ promo.descripcion|truncatechars:110 }}</p>
+                        <h2>${{ promo.precio_promocion|floatformat:0|intcomma }}</h2>
+                    </div>
+                </div>
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalPromo{{ promo.id }}">
+                    PERSONALIZAR
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalPromo{{ promo.id }}" tabindex="-1" aria-labelledby="modalLabelPromo{{ promo.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="contenedor-modal-personalizado">
+
+                            <!-- Cerrar -->
+                            <div class="contenedor-modal-inicio">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>
+                            </div>
+
+                            <div class="contenedor-modal-divisor">
+
+                                <!-- Imagen -->
+                                <div class="contenedor-modal-izquierda">
+                                    <img src="{% if promo.imagen_promocion %}{{ promo.imagen_promocion.url }}{% else %}{% static 'promos/promocion.png' %}{% endif %}" alt="{{ promo.nombre }}">
+                                </div>
+
+                                <!-- Personalización -->
+                                <div class="contenedor-modal-derecha">
+                                    <div class="contenedor-modal-items-centrados">
+                                        <h1>{{ promo.nombre }}</h1>
+                                        <p>{{ promo.descripcion }}</p>
+                                        <h2>${{ promo.precio_promocion|floatformat:0|intcomma }}</h2>
+                                    </div>
+
+                                    <div class="contenedor-topings">
+                                        {% for i in ""|center:promo.cantidad_productos_a_elegir %}
+                                        <div class="mb-3">
+
+                                            <!-- Colapsable -->
+                                            <button class="btn btn-outline-dark w-100 text-start mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#productoColapsable{{ promo.id }}-{{ forloop.counter }}">
+                                                Producto {{ forloop.counter }}
+                                            </button>
+
+                                            <div class="collapse" id="productoColapsable{{ promo.id }}-{{ forloop.counter }}">
+                                                <label>Selecciona tipo:</label>
+                                                <select class="form-select mb-2" name="producto_opcional_{{ forloop.counter }}">
+                                                    {% for opcion in promo.productos_opcionales.all %}
+                                                    <option value="{{ opcion.id }}">{{ opcion.nombre_producto }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+                                                <label>Aderezos:</label>
+                                                <div class="form-check mb-2">
+                                                    {% for aderezo in aderezos %}
+                                                    <input type="checkbox" class="form-check-input" name="aderezos_{{ forloop.counter }}">
+                                                    <label class="form-check-label">{{ aderezo.nombre_aderezo }}</label><br>
+                                                    {% endfor %}
+                                                </div>
+
+                                                <label>Ingredientes Extra:</label>
+                                                <div class="form-check">
+                                                    {% for extra in ingredientes_extras %}
+                                                    <input type="checkbox" class="form-check-input ingrediente-extra" data-precio="{{ extra.precio_adicional }}">
+                                                    <label class="form-check-label">{{ extra.nombre_ingrediente }} (+${{ extra.precio_adicional|floatformat:0|intcomma }})</label><br>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="modal-footer px-0">
+                                <button type="button" class="btn btn-primary">
+                                    AGREGAR PROMO ${{ promo.precio_promocion|floatformat:0|intcomma }}
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
+    </div>
 
-    </main>
+</main>
 
-    {% include "plantillas/footer.html" %}
-    {% include "plantillas/js.html" %}
+{% include "plantillas/footer.html" %}
+{% include "plantillas/js.html" %}
 </body>
 </html>

@@ -1,0 +1,10 @@
+
+.contenedor-modal-derecha {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+    padding: 20px;
+    width: 458.4px !important;
+    display: flex !important;
+    justify-content: center !important;
+}
