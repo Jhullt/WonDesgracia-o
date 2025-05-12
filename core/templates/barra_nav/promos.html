@@ -6,6 +6,7 @@
 <body>
 
 {% include "plantillas/header.html" %}
+<link rel="stylesheet" href="{% static 'promos.css' %}">
 
 <main>
     <div class="nombre_pagina">
@@ -25,7 +26,7 @@
                     </div>
                 </div>
                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalPromo{{ promo.id }}">
-                    PERSONALIZAR
+                    AGREGAR
                 </button>
             </div>
 
@@ -41,7 +42,6 @@
                             </div>
 
                             <div class="contenedor-modal-divisor">
-
                                 <!-- Imagen -->
                                 <div class="contenedor-modal-izquierda">
                                     <img src="{% if promo.imagen_promocion %}{{ promo.imagen_promocion.url }}{% else %}{% static 'promos/promocion.png' %}{% endif %}" alt="{{ promo.nombre }}">
@@ -72,27 +72,56 @@
                                                     {% endfor %}
                                                 </select>
 
-                                                <label>Aderezos:</label>
-                                                <div class="form-check mb-2">
-                                                    {% for aderezo in aderezos %}
-                                                    <input type="checkbox" class="form-check-input" name="aderezos_{{ forloop.counter }}">
-                                                    <label class="form-check-label">{{ aderezo.nombre_aderezo }}</label><br>
-                                                    {% endfor %}
+                                                <!-- Aderezos -->
+                                                <div class="contenedor-aderezos-modal mb-3">
+                                                    <div class="contenedor-modal-titulo-toppings">
+                                                        <label class="form-label">Selecciona tus aderezos</label>
+                                                        <label class="form-label opcional">(Opcional)</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        {% for aderezo in aderezos %}
+                                                        <input type="checkbox" class="form-check-input" name="aderezos_{{ forloop.counter }}">
+                                                        <label class="form-check-label">{{ aderezo.nombre_aderezo }}</label><br>
+                                                        {% endfor %}
+                                                    </div>
                                                 </div>
 
-                                                <label>Ingredientes Extra:</label>
-                                                <div class="form-check">
-                                                    {% for extra in ingredientes_extras %}
-                                                    <input type="checkbox" class="form-check-input ingrediente-extra" data-precio="{{ extra.precio_adicional }}">
-                                                    <label class="form-check-label">{{ extra.nombre_ingrediente }} (+${{ extra.precio_adicional|floatformat:0|intcomma }})</label><br>
-                                                    {% endfor %}
+                                                <!-- Ingredientes Extra -->
+                                                <div class="contenedor-ingredientes-extra mb-3">
+                                                    <div class="contenedor-modal-titulo-toppings d-flex justify-content-between">
+                                                        <label class="form-label">Agrega ingredientes extra</label>
+                                                        <label class="form-label opcional">(Máx. 3)</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <div class="separador-ingrediente-extra">
+                                                            {% for extra in ingredientes_extras %}
+                                                            <div class="separador-ingrediente-extra-check">
+                                                                <div class="fila-ingrediente d-flex justify-content-between align-items-center">
+                                                                    <div class="izquierda d-flex align-items-center gap-2">
+                                                                        <input class="form-check-input ingrediente-extra" type="checkbox"
+                                                                            name="ingredientes_extra"
+                                                                            value="{{ extra.id }}"
+                                                                            data-precio="{{ extra.precio_adicional }}"
+                                                                            id="extra{{ forloop.parentloop.counter }}-{{ extra.id }}">
+                                                                        <label class="form-check-label" for="extra{{ forloop.parentloop.counter }}-{{ extra.id }}">
+                                                                            {{ extra.nombre_ingrediente }}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="derecha">
+                                                                        <span>${{ extra.precio_adicional|floatformat:0|intcomma }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         {% endfor %}
                                     </div>
                                 </div>
-
                             </div>
 
                             <!-- Footer -->

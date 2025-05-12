@@ -79,7 +79,7 @@ def vista_seguir_pedido(request):
 
 def vista_promos(request):
     promociones = Promocion.objects.all()
-    productos = Producto.objects.all()
+    productos = Producto.objects.filter(stock__gt=0)
     aderezos = Aderezo.objects.all()
     ingredientes_extras = IngredienteExtra.objects.all()
     return render(request, 'barra_nav/promos.html', {
@@ -88,6 +88,7 @@ def vista_promos(request):
         'aderezos': aderezos,
         'ingredientes_extras': ingredientes_extras,
     })
+
 
 def vista_carrito(request):
     carrito = request.session.get('carrito', [])

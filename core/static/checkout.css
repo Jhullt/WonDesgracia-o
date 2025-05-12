@@ -14,11 +14,304 @@
     color: #000000;
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Roboto', sans-serif;
 }
 
 .futuro-contenedor{
     position: relative;
     border-bottom: 1px solid #ccc;
+}
+
+.contenedor-global-checkout{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor-izquierda-checkout{
+   padding: 24px 12px 24px 24px;
+   width: 100%;
+}
+
+.contenedor-derecho-checkout{
+    padding: 24px 24px 24px 12px;
+}
+
+.informacion-contacto{
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 56px;
+    margin-bottom: 15px;
+}
+
+.informacion-contacto h1{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+.contenedor-datos-contacto h2{
+    color: #000000;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+.dato{
+    border-radius: .375rem;
+    border: 1px solid #ccc;
+    width: 390px;
+    height: 45.6px;
+    padding: 0px 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dato input{
+    padding: 0px 10px;
+    border: none;
+    width: 368.4px;
+    height: 44px;
+    color: #555454;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dato-telefono{
+    border-radius: .375rem;
+    border: 1px solid #ccc;
+    width: 390px;
+    height: 45.6px;
+    padding: 0px 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.dato-telefono input{
+    padding: 0px 10px;
+    border: none;
+    width: 368.4px;
+    height: 44px;
+    color: #555454;
+    margin: 0px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dato-telefono h3{
+    color: #555454;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+}
+
+.contenedor-pago-checkout{
+    padding: 16px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metodo-pago-chekout{
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: .375rem;
+    margin-bottom: 30px;
+}
+
+.metodo-pago-chekout button{
+    border: none;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#webpay{
+    width: 300px;
+}
+
+.titulo-metodo-pago h1{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+.titulo-metodo-pago{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#confirmar-pedido{
+    border-radius: 20px;
+    background-color: #f0a41c;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    width: 80%;
+    max-width: 240px;
+    box-sizing: border-box;
+    height: 40px;
+    -webkit-box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+    -moz-box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+    box-shadow: 8px 8px 13px -3px rgba(199, 199, 199, 1);
+}
+
+#confirmar-pedido:hover{
+    background-color: #ffd74a;
+    color: black;
+    transform: scale(1.03);
+    box-shadow: 10px 10px 16px -4px rgba(199, 199, 199, 1);
+}
+
+.contenedor-tipo-entrega{
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 16px 56px;
+}
+
+.titulo-tipo-entrega h1{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+.titulo-tipo-entrega{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.hora-retiro{
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 16px 56px;
+}
+
+.titulo-hora-retiro{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.titulo-hora-retiro h1{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+.resumen-productos-checkout{
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 16px 56px;
+}
+
+.resumen-productos-checkout h1{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+}
+
+.resumen-productos-checkout h2{
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+}
+
+.resumen-productos-checkout h3{
+    color: #626262;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    margin: 0px;
+}
+
+.tipo-entrega-opciones{
+    width: 100%;
+    display: flex;
+    column-gap: 5px;
+}
+
+.tipo-entrega-opciones button{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    width: 50%;
+    height: 40px;
+}
+
+#resumen-entrega{
+    margin-top: 15px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #6B7280;
+    font-weight: bolder;
+}
+
+.tipo-retiro label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #6B7280;
+    font-weight: bolder;
+}
+
+.tipo-retiro input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    height: 44px;
+}
+
+.tipo-delivery label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #6B7280;
+    font-weight: bolder;
+}
+
+.tipo-delivery input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    height: 44px;
+}
+
+.tipo-delivery button{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
 }

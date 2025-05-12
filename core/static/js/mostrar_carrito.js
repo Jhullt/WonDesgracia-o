@@ -10,16 +10,49 @@ document.addEventListener('DOMContentLoaded', function () {
         let cantidadTotal = 0;
 
         carrito.forEach((item, index) => {
-            let textoAderezos = item.aderezos?.map(a => a.nombre).join(', ') || '';
-            let textoExtras = item.extras?.map(e => e.nombre).join(', ') || '';
-            let textoFinal = [textoAderezos, textoExtras].filter(Boolean).join(', ');
+            let textoFinal = '';
+            let precioExtras = 0;
 
-            let precioExtras = item.extras?.reduce((acc, e) => acc + e.precio, 0) || 0;
-            const precioUnitario = item.precio + precioExtras;
+            if (item.productosPromo) {
+                textoFinal = item.productosPromo.map(p => {
+                    const aderezos = p.aderezos?.length ? p.aderezos.join(', ') : '';
+                    const extras = p.extras?.length ? p.extras.map(e => {
+                        precioExtras += e.precio;
+                        return e.nombre;
+                    }).join(', ') : '';
+                    return `${p.nombre}${[aderezos, extras].filter(Boolean).length ? ', ' + [aderezos, extras].filter(Boolean).join(', ') : ''}`;
+                }).join('<br>');
+            } else {
+                const textoAderezos = item.aderezos?.map(a => a.nombre).join(', ') || '';
+                const textoExtras = item.extras?.map(e => e.nombre).join(', ') || '';
+                textoFinal = [textoAderezos, textoExtras].filter(Boolean).join(', ');
+                precioExtras = item.extras?.reduce((acc, e) => acc + e.precio, 0) || 0;
+            }
+
+            const precioUnitario = item.precio;
             const precioFinal = precioUnitario * item.cantidad;
 
             total += precioFinal;
             cantidadTotal += item.cantidad;
+
+            const botonCantidad = item.productosPromo
+                ? `
+                    <div class="contenedor-button-carta-carrito">
+                        <button class="btn-restar" data-index="${index}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <h1>${item.cantidad}</h1>
+                    </div>`
+                : `
+                    <div class="contenedor-button-carta-carrito">
+                        <button class="btn-restar" data-index="${index}">
+                            <i class="fa-solid ${item.cantidad > 1 ? 'fa-minus' : 'fa-trash'}"></i>
+                        </button>
+                        <h1>${item.cantidad}</h1>
+                        <button class="btn-sumar" data-index="${index}">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>`;
 
             const productoHTML = `
                 <div class="contenedor-carta-carrito" data-index="${index}">
@@ -32,20 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p>${textoFinal}</p>
                         </div>
                         <div class="contenedor-abajo-carrito">
-                            <div class="contenedor-button-carta-carrito">
-                                <button class="btn-restar" data-index="${index}">
-                                    <i class="fa-solid ${item.cantidad > 1 ? 'fa-minus' : 'fa-trash'}"></i>
-                                </button>
-                                <h1>${item.cantidad}</h1>
-                                <button class="btn-sumar" data-index="${index}">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </div>
+                            ${botonCantidad}
                             <h1>$${precioFinal.toLocaleString('es-CL')}</h1>
                         </div>
                     </div>
                 </div>
             `;
+
             carritoItems.insertAdjacentHTML('beforeend', productoHTML);
         });
 
@@ -63,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (e) {
         const sumarBtn = e.target.closest('.btn-sumar');
         const restarBtn = e.target.closest('.btn-restar');
-
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
         if (sumarBtn) {
@@ -75,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (restarBtn) {
             const index = parseInt(restarBtn.dataset.index);
-            if (carrito[index].cantidad > 1) {
+            if (carrito[index].cantidad > 1 && !carrito[index].productosPromo) {
                 carrito[index].cantidad -= 1;
             } else {
                 carrito.splice(index, 1);

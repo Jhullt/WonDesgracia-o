@@ -5,25 +5,101 @@
 {% include "plantillas/head.html" %}
 <body>
 
-    <header>
-        <!-- Horario tienda -->
-        <div class="horario">
-            <h1 id="estado-tienda">Cargando estado de la tienda...</h1>
+<header>
+    <div class="horario">
+        <h1 id="estado-tienda">Cargando estado de la tienda...</h1>
+    </div>
+
+    <div class="pagar-header">
+        <a href="{% url 'carrito' %}"><i class="fa-solid fa-arrow-left"></i> VOLVER</a>
+        <img id="logo-nav" src="{% static 'logo.png' %}" alt="Logo Won Desgracia'o">
+    </div>
+</header>
+
+<main>
+    <div class="contenedor-global-checkout">
+
+        <div class="contenedor-izquierda-checkout">
+
+            <!-- Tipo de entrega directamente visible -->
+            <div class="contenedor-tipo-entrega">
+                <div class="titulo-tipo-entrega">
+                    <h1>Tipo de entrega</h1>
+                </div>
+
+                <div class="tipo-entrega-opciones">
+                    <button class="btn btn-dark" id="btn-retiro"><i class="fa-solid fa-shop"></i> Retiro en tienda</button>
+                    <button class="btn btn-outline-dark" id="btn-delivery"><i class="fa-solid fa-truck-moving"></i> Delivery</button>
+                </div>
+
+                <div class="tipo-retiro mt-3" id="seccion-retiro" style="display: none;">
+                    <label for="hora-retiro">Selecciona hora de retiro (10:00 - 22:00)</label>
+                    <input type="time" id="hora-retiro" class="form-control mt-1" min="10:00" max="22:00">
+                </div>
+
+                <div class="tipo-delivery mt-3" id="seccion-delivery" style="display: none;">
+                    <label for="direccion-delivery"><i class="fa-solid fa-truck-moving"></i> Dirección</label>
+                    <input type="text" id="direccion-delivery" class="form-control mt-1 mb-2" placeholder="Escribe tu dirección">
+                    <button class="btn btn-outline-secondary w-100" id="btn-ubicacion">
+                        <i class="fa-solid fa-location-dot"></i> Usar mi ubicación actual
+                    </button>
+                </div>
+
+                <p class="mt-2 text-muted" id="resumen-entrega"></p>
+            </div>
+
+            <!-- Información contacto -->
+            <div class="informacion-contacto mt-4">
+                <h1>Información de contacto</h1>
+
+                <div class="contenedor-datos-contacto">
+                    <h2>Nombre</h2>
+                    <div class="dato">
+                        <input type="text" placeholder="Nombre y apellido">
+                    </div>
+
+                    <h2>Teléfono</h2>
+                    <div class="dato-telefono">
+                        <h3>+569</h3>
+                        <input type="text" placeholder="Ingresa tu teléfono">
+                    </div>
+
+                    <h2>Email</h2>
+                    <div class="dato">
+                        <input type="text" placeholder="Ingresa tu correo electrónico">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos -->
+            <div class="resumen-productos-checkout mt-4">
+                <h1>Productos (1)</h1>
+                <h2>1x Nombre producto</h2>
+                <h3>Aderezos y agregados</h3>
+            </div>
         </div>
 
-        <div class="pagar-header">
-            <a href="{% url 'carrito' %}"><i class="fa-solid fa-arrow-left"></i> VOLVER</a>
-            <img id="logo-nav" src="{% static 'logo.png' %}" alt="Logo Won Desgracia'o">
-        </div>        
+        <div class="contenedor-derecho-checkout">
+            <div class="contenedor-pago-checkout">
+                <div class="titulo-metodo-pago">
+                    <h1>Métodos de pago</h1>
+                </div>
 
+                <div class="metodo-pago-chekout">
+                    <button>
+                        <img id="webpay" src="{% static 'webpay.png' %}" alt="webpay">
+                    </button>
+                </div>
 
-    </header>
+                <button id="confirmar-pedido">Confirmar pedido $57.800</button>
+            </div>
+        </div>
 
-    <main>
+    </div>
+</main>
 
-    </main>
-
-    {% include "plantillas/footer.html" %}
-    {% include "plantillas/js.html" %}
+{% include "plantillas/footer.html" %}
+{% include "plantillas/js.html" %}
+<script src="{% static 'js/checkout_entrega.js' %}"></script>
 </body>
 </html>
