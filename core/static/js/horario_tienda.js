@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const estadoTienda = document.getElementById('estado-tienda');
+    const estadoTiendaTexto = document.getElementById('estado-tienda');
+    const estadoTiendaValor = document.getElementById('estado-tienda-valor');
 
     function actualizarEstadoTienda() {
         const ahora = new Date();
         const ahoraChile = new Date(ahora.toLocaleString('en-US', { timeZone: 'America/Santiago' }));
-        // const ahoraChile = new Date();
-        //     ahoraChile.setHours(2); // Simula que son las 2 AM
+
+        // Simular hora para pruebas (ej: 2:00 AM)
+        ahoraChile.setHours(2, 0, 0); 
+
         const hora = ahoraChile.getHours();
         const minutos = ahoraChile.getMinutes();
         const segundos = ahoraChile.getSeconds();
@@ -23,12 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const minutosRestantes = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const segundosRestantes = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            estadoTienda.textContent = `Estamos abiertos, cerramos en: ${horasRestantes}:${String(minutosRestantes).padStart(2, '0')}:${String(segundosRestantes).padStart(2, '0')}`;
+            estadoTiendaTexto.textContent = `Estamos abiertos, cerramos en: ${horasRestantes}:${String(minutosRestantes).padStart(2, '0')}:${String(segundosRestantes).padStart(2, '0')}`;
+            estadoTiendaValor.value = 'abierto';
         } else {
-            estadoTienda.textContent = 'Estamos cerrados';
+            estadoTiendaTexto.textContent = 'Estamos cerrados';
+            estadoTiendaValor.value = 'cerrado';
         }
     }
 
-    actualizarEstadoTienda(); // Mostrar al cargar
-    setInterval(actualizarEstadoTienda, 1000); // Actualizar cada segundo
+    actualizarEstadoTienda(); // Al cargar
+    setInterval(actualizarEstadoTienda, 1000); // Cada segundo
 });

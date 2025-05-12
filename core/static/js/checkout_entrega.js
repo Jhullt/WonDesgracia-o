@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const horaRetiro = document.getElementById('hora-retiro');
     const direccion = document.getElementById('direccion-delivery');
     const btnUbicacion = document.getElementById('btn-ubicacion');
+    const btnConfirmar = document.getElementById('confirmar-pedido');
 
     // Establecer hora por defecto: 10 minutos más
     const ahora = new Date();
@@ -17,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const ampm = horas >= 12 ? 'pm' : 'am';
 
     horas = horas % 12;
-    horas = horas ? horas : 12; // convertir 0 en 12
+    horas = horas ? horas : 12;
 
     const horaFormateada = `${horas}:${minutos} ${ampm}`;
-    horaRetiro.value = `${ahora.getHours().toString().padStart(2, '0')}:${minutos}`; // para el input de tipo time
+    horaRetiro.value = `${ahora.getHours().toString().padStart(2, '0')}:${minutos}`;
 
     // Mostrar "Retiro en tienda" por defecto
     seccionRetiro.style.display = 'block';
@@ -123,4 +124,24 @@ document.addEventListener('DOMContentLoaded', () => {
             btnUbicacion.innerHTML = '<i class="fa-solid fa-location-dot"></i> Usar mi ubicación actual';
         }
     });
+
+    // Verificar estado de tienda según el input oculto actualizado por horario_tienda.js
+    function verificarHorarioTienda() {
+        const estado = document.getElementById('estado-tienda-valor');
+        if (!estado || estado.value !== 'abierto') {
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.backgroundColor = '#ccc';
+            btnConfirmar.style.cursor = 'not-allowed';
+            btnConfirmar.textContent = 'Fuera de horario de atención';
+        } else {
+            btnConfirmar.disabled = false;
+            btnConfirmar.style.backgroundColor = '#f0a41c';
+            btnConfirmar.style.cursor = 'pointer';
+            btnConfirmar.textContent = 'Confirmar pedido $57.800';
+        }
+    }
+
+    // Esperar un poco para que horario_tienda.js actualice el estado antes de validar
+    setTimeout(verificarHorarioTienda, 1500);
+    setInterval(verificarHorarioTienda, 60000);
 });

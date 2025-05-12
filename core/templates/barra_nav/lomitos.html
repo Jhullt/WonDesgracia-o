@@ -25,7 +25,7 @@
                             <h2>${{ producto.precio_producto|floatformat:0|intcomma }}</h2>
                         </div>
                     </div>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalProducto{{ producto.id }}">
+                    <button class="btn btn-warning btn-abrir-modal" data-bs-toggle="modal" data-bs-target="#modalProducto{{ producto.id }}">
                         AGREGAR
                     </button>
                 </div>
@@ -36,12 +36,12 @@
                         <div class="modal-content">
 
                             <div class="contenedor-modal-personalizado">
-                                
+
                                 <!-- Botón cerrar -->
                                 <div class="contenedor-modal-inicio">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button>
                                 </div>
-                                
+
                                 <!-- Contenido modal -->
                                 <div class="contenedor-modal-divisor">
 
@@ -65,7 +65,7 @@
                                                     <label class="form-label">Selecciona tus aderezos</label>
                                                     <label class="form-label opcional">(Opcional)</label>
                                                 </div>
-                                                
+
                                                 <div class="form-check">
                                                     {% for aderezo in aderezos %}
                                                     <input class="form-check-input" type="checkbox" id="aderezo{{ producto.id }}-{{ aderezo.id }}">
@@ -123,7 +123,7 @@
                                 >
                                     AGREGAR ${{ producto.precio_producto|floatformat:0|intcomma }}
                                 </button>
-                                
+
                                 </div>
 
                             </div>

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const modal = document.querySelector(`#modalProducto${productoId}`);
             const nombre = modal.querySelector('.contenedor-modal-items-centrados h1').innerText;
             const descripcion = modal.querySelector('.contenedor-modal-items-centrados p').innerText;
-            const precio = parseInt(this.dataset.precioBase);
+            const precioBase = parseInt(this.dataset.precioBase);
             const imagen = modal.querySelector('.contenedor-modal-izquierda img').src;
             const cantidad = parseInt(document.getElementById(`cantidad-${productoId}`).innerText);
 
@@ -24,11 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
             });
 
+            // Calcular total de extras seleccionados
+            const totalExtras = extrasSeleccionados.reduce((acc, extra) => acc + extra.precio, 0);
+            const precioFinal = (precioBase + totalExtras) * cantidad;
+
             const producto = {
                 id: productoId,
                 nombre,
                 descripcion,
-                precio,
+                precio: precioFinal,
                 imagen,
                 cantidad,
                 aderezos: aderezosSeleccionados,
@@ -45,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (indexExistente !== -1) {
                 carrito[indexExistente].cantidad += producto.cantidad;
+                carrito[indexExistente].precio += producto.precio;
             } else {
                 carrito.push(producto);
             }
