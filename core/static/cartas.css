@@ -41,7 +41,7 @@
     display: flex;
     border-radius: 10px;
     width: 16vw;
-    height: fit-content;
+    height: 400px;
     -webkit-box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
     -moz-box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
     box-shadow: 8px 8px 24px -12px rgba(199, 199, 199, 1);
